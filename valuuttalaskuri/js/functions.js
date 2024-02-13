@@ -7,5 +7,5 @@ button.addEventListener('click',() => {
     //alert('test')
     const crowns = input.value
     const euros = crowns * 0.089
-    output.innerHTML = euros.toFixed(2)
+    output.innerHTML = euros.toFixed(2) + " €"
 })

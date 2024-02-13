@@ -4,12 +4,29 @@
 <meta charset ="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <title>Noppa</title>
 </head>
 <body>
-    <div id="container">
-        <div id="dice"><img src=".img/img1.png"></div>
-    </div>
-<script src="./js/functions.js"></script>
+    <img id="noppakuva" src="./img/1.png" alt="Nopan silmäluvut">
+
+    <script>
+    function heitaNoppaa() {
+      var tulos = Math.floor(Math.random() * 6) + 1;
+      return tulos;
+    }
+    
+    function paivitaNopanKuva(silmaluku) {
+      var kuvaPolku = silmaluku + ".png";
+      $("#noppakuva").attr("src", kuvaPolku);
+    }
+    
+    // Klikkaa jotain, esimerkiksi nappia, heittääksesi noppaa
+    $("body").on("click", function() {
+      var heittoTulos = heitaNoppaa();
+      paivitaNopanKuva(heittoTulos);
+      console.log("Nopanheitto: " + heittoTulos);
+    });
+    </script>
 </body>
 </html> 
