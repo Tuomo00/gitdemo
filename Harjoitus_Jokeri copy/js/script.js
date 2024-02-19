@@ -13,8 +13,15 @@ const addTableRow = () => {
 
 }
 
+let RowCount = 0;
+
 button.addEventListener('click',() => {
-    addTableRow()
-    
+    addTableRow();
+    RowCount++;
+    updateScore()
 
 })
+
+function updateScore() {
+    document.getElementById('RowCount').textContent = RowCount
+}
