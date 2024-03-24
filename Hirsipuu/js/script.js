@@ -8,26 +8,36 @@ const words = [
   "database",
   "markup",
   "framework",
-  "variable"
+  "variable",
+  "coding"
 ]
 
 let randomizedWord = ''
 let maskedWord = ''
+let guesses = 0
 
 const newGame = () => {
-  const random = Math.floor(Math.random() * 10) + 1
-  randomizedWord = words[random]
+  let randomIndex = Math.floor(Math.random() * words.length)
+  randomizedWord = words[randomIndex]
+  while (randomizedWord.length === 0) {
+    randomIndex = Math.floor(Math.random() * words.length)
+    randomizedWord = words[randomIndex]
+  }
   maskedWord = "*".repeat(randomizedWord.length)
   console.log(randomizedWord)
   output.innerHTML = maskedWord
 }
 
 const win = () => {
-  alert(`You have guessed right, the word is ${randomizedWord}.`)
+  alert(`You have guessed right, the word is ${randomizedWord}. You needed ${(guesses + 1)} guesses.`)
+  guesses = 0
+  span.textContent = `${guesses}`
   newGame()
 }
 
 const replaceFoundChars = (guess) => {
+  guesses++
+  span.textContent = `${guesses}`
   for (let i = 0;i<randomizedWord.length;i++) {
     const char = randomizedWord.substring(i,i+1)
     if (char === guess) {
@@ -56,6 +66,8 @@ input.addEventListener('keypress',(e) => {
       }
     } else {
       alert("You guessed wrong!")
+      guesses++
+      span.textContent = `${guesses}`
     }
     input.value = ''
   }
